@@ -109,7 +109,7 @@ func setupProducer() (sarama.SyncProducer, error) {
 	config.Producer.Return.Successes = true
 	producer, err := sarama.NewSyncProducer([]string{KafkaServerAddress}, config)
 	if err != nil {
-		return nil, fmt.Errorf("failed to setup producer: %w", err.Error())
+		return nil, fmt.Errorf("failed to setup producer: %v", err.Error())
 	}
 	return producer, nil
 }
@@ -124,7 +124,7 @@ func main() {
 
 	producer, err := setupProducer()
 	if err != nil {
-		log.Fatalf("failed to initialize producer: %w", err)
+		log.Fatalf("failed to initialize producer: %v", err)
 	}
 	defer producer.Close()
 
